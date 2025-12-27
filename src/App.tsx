@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//component imports
+import Nav from "./components/NavgationBar/NavgationBar.tsx";
+// import { SearchHistory } from "./components/History/SearchHistory.tsx";
+import Account from "./components/AccountInterface/AccountInterface.tsx";
+//import NewSubject from "./components/NewSubject/NewSubject.tsx";
+// import Chat from "./components/Chat/Chat.tsx";
+import Chat_new from "./components/Chat/Chat_new.tsx";
+import Dnd from "./components/Dnd/Dnd.tsx";
+
+import "./App.css";
+
+// import { useState, useEffect, useRef } from "react";
+// import RoadmapCard from "./components/PdfMaker/RoadmapCard.tsx";
+// import { type RoadmapCardData }  from "../src/context/RoadmapContext.tsx"
+// import RoadmapCardsContext from "../src/context/RoadmapContext.tsx"
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [roadMapCardSession , setRoadMapCardSession ] = useState<RoadmapCardData[]>([]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <>
+        <Nav>
+          <Account />
+          {/* <NewSubject /> */}
+          {/* <SearchHistory /> */}
+          <div>hello world</div>
+        </Nav>
+
+        <main className="relative flex-1 p-6 ml-64 h-screen">
+
+          <Dnd>
+            <div>yolo</div>
+            {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} > */}
+            <Chat_new />
+            {/* </RoadmapCardsContext.Provider>
+              {roadMapCardSession && roadMapCardSession.map((content: any, index: number) => (
+                <RoadmapCard key={index} content={content} />
+              ))} */}
+          </Dnd>
+        </main>
+      </>
+  );
 }
 
-export default App
+export default App;

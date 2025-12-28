@@ -8,7 +8,7 @@ import SortableItem from './SortableItem'
 
 import type { Item } from "./types";
 
-export default function DroppableContainer({ id, title, items, index}: { id: string; title: string; items: Item[]; index: number}) {
+export default function DroppableContainer({ id, title="", items, index}: { id: string; title: string; items: Item[]; index: number}) {
   /*
     DroppableContainer component represents a droppable area
     - uses useDroppable hook from @dnd-kit/core to make area droppable
@@ -23,9 +23,9 @@ export default function DroppableContainer({ id, title, items, index}: { id: str
       ref={setNodeRef}
       className={`relative flex ${index === 0 ? 'h-[80%]' : 'h-[20%] '} flex-col rounded-md p-3 dark:border-gray-700 overflow-x-auto overflow-y-hidden`}
     >
-      {/* <h3 className="mb-2 font-medium text-gray-700 dark:text-gray-200">
+      <h3 className="mb-2 font-medium text-gray-700 dark:text-gray-200">
         {title}
-      </h3> */}
+      </h3>
       
       <div className="h-full flex-1 bg-green-300/0">
         <SortableContext

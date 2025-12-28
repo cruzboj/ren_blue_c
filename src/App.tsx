@@ -4,7 +4,7 @@ import Nav from "./components/NavgationBar/NavgationBar.tsx";
 import Account from "./components/AccountInterface/AccountInterface.tsx";
 //import NewSubject from "./components/NewSubject/NewSubject.tsx";
 // import Chat from "./components/Chat/Chat.tsx";
-import Chat_new from "./components/Chat/Chat_new.tsx";
+import Chat from "./components/Chat/Chat.tsx";
 import Dnd from "./components/Dnd/Dnd.tsx";
 
 import "./App.css";
@@ -27,12 +27,12 @@ function App() {
         </Nav>
 
         <main className="relative flex-1 p-6 ml-64 h-screen">
-
+            <Chat/>
           <Dnd>
             <div>yolo</div>
-            {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} > */}
-            <Chat_new />
-            {/* </RoadmapCardsContext.Provider>
+            {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} >
+            
+            </RoadmapCardsContext.Provider>
               {roadMapCardSession && roadMapCardSession.map((content: any, index: number) => (
                 <RoadmapCard key={index} content={content} />
               ))} */}

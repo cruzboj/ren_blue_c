@@ -9,6 +9,7 @@ export type ChatContextType = {
   setInput: React.Dispatch<React.SetStateAction<string>>;
 
   sendUser: (input: string) => void;
+  updateBotResponse: (id: number | string, text: string) => void;
 };
 
 export const ChatContext = createContext<ChatContextType>({
@@ -17,4 +18,5 @@ export const ChatContext = createContext<ChatContextType>({
   input: "",
   setInput: () => {},
   sendUser: () => {},
+  updateBotResponse: () => {}
 });

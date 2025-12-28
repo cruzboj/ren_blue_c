@@ -13,8 +13,8 @@ export default function Chat() {
         Chat Component
         + useContext for useStates
 
-        - function SendLLM:
-            take input and setMessage as bot
+        - function updateBotResponse:
+            take input and setMessage as bot with id to time chunks for better response
         - function sendUser:
             take input and setMessage as user
 
@@ -32,15 +32,15 @@ export default function Chat() {
         if (animation) setIsFinished(true);
     };
 
-    function sendLLM(input : string){
-        setMessages((prevMsg) => [
-            ...prevMsg,
-            { input, sender: "user" },
-            {
-              input: `${input}`,
-              sender: "bot",
-            },
-        ]);
+    function updateBotResponse(id: number | string, text: string) {
+        setMessages((prev) => {
+            const exists = prev.some((m) => m.id === id);
+            if (exists) {
+                return prev.map((m) => (m.id === id ? { ...m, input: text } : m));
+            } else {
+                return [...prev, { id, input: text, sender: "bot" }];
+            }
+        });
     }
 
     function sendUser(input: string) {
@@ -75,7 +75,7 @@ export default function Chat() {
                             className="w-5 h-5 rounded-full bg-orange-600 hover:bg-red-600 mr-5 cursor-pointer">
                         </button>
                     </div>
-                    <ChatContext.Provider value={{ messages , setMessages , input , setInput , sendUser}}>
+                    <ChatContext.Provider value={{ messages , setMessages , input , setInput , sendUser ,updateBotResponse}}>
                         <ChatMessages />
                         <ChatInput/>
                     </ChatContext.Provider>

@@ -29,7 +29,7 @@ function App() {
         <main className="relative flex-1 p-6 ml-64 h-screen">
             <Chat/>
           <Dnd>
-            <div>yolo</div>
+            <div className="bg-zinc-200 w-100 h-170 text-black">yolo</div>
             {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} >
             
             </RoadmapCardsContext.Provider>

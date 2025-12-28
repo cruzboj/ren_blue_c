@@ -4,17 +4,30 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { ChatContext } from "../context/ChatContext";
 
-export default function ChatInput() {
-  const { input , setInput , sendUser } = useContext(ChatContext);
+import { streamLLMResponse } from "./chatService";
 
-  const handleSend = () => {
+export default function ChatInput() {
+  const { input , setInput , sendUser , updateBotResponse} = useContext(ChatContext);
+
+  const handleSend = async () => {
     if (input.trim() !== "") {
-      sendUser(input);
+      const userText = input;
+      const botMsgId = Date.now();
+      
       setInput("");
-      //add api call for llm
+      sendUser(userText);
+
+      try {
+        await streamLLMResponse(userText, (accumulatedText) => {
+          updateBotResponse(botMsgId, accumulatedText);
+        });
+      } catch (error) {
+        console.error("Failed to stream:", error);
+        updateBotResponse(botMsgId, "i'm sorry there was a problem generating text");
+      }
     }
   };
-
+  
   return (
     <>
       <div

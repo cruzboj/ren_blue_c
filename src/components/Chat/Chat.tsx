@@ -87,7 +87,7 @@ export default function Chat() {
                     onClick={handleOpenChat}
                     className={`
                         pointer-events-auto
-                        absolute left-0 top-10 w-12 h-12 bg-lime-600 hover:bg-lime-500 rounded-r-lg flex items-center justify-center cursor-pointer text-white shadow-lg origin-left         
+                        absolute left-0 top-20 w-12 h-12 bg-lime-600 hover:bg-lime-500 rounded-r-lg flex items-center justify-center cursor-pointer text-white shadow-lg origin-left         
                         ${animation ? 'motion-scale-x-in-0 motion-duration-700 motion-ease-spring-bouncier motion-loop-once' : ''}
                     `}
                 >

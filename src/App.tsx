@@ -8,6 +8,8 @@ import Chat from "./components/Chat/Chat.tsx";
 import Dnd from "./components/Dnd/Dnd.tsx";
 
 import "./App.css";
+import SettingsButton from "./components/AccountInterface/UserOptions.tsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // import { useState, useEffect, useRef } from "react";
 // import RoadmapCard from "./components/PdfMaker/RoadmapCard.tsx";
@@ -16,6 +18,7 @@ import "./App.css";
 
 function App() {
   // const [roadMapCardSession , setRoadMapCardSession ] = useState<RoadmapCardData[]>([]);
+  const { isAuthenticated: islogged } = useAuth0();
 
   return (
       <>
@@ -27,7 +30,8 @@ function App() {
         </Nav>
 
         <main className="relative flex-1 p-6 ml-64 h-screen">
-            <Chat/>
+          {islogged ? <Chat /> : null}
+          {islogged ? <SettingsButton /> : null}
           <Dnd>
             <div className="bg-zinc-200 w-100 h-170 text-black">yolo</div>
             {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} >

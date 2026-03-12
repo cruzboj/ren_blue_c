@@ -19,7 +19,13 @@ createRoot(document.getElementById('root')!).render(
       <Auth0Provider 
         domain={domain} 
         clientId={clientId}
-        authorizationParams={{redirect_uri: window.location.origin}}
+        authorizationParams={{
+          redirect_uri: window.location.origin,
+          audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+          scope: "openid profile email offline_access"
+        }}
+        // useRefreshTokens={true}
+        // cacheLocation="localstorage"
       >
         <App />
       </Auth0Provider>

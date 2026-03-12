@@ -7,6 +7,8 @@ export function getUrlPort(): string {
 
 export function getUrl() : string {
     const host = import.meta.env.VITE_SERVER_HOST;
+    if (host.includes("localhost") || host.includes("127.0.0.1"))
+      return `http://${host}`;
 
     return `https://${host}`;
 }

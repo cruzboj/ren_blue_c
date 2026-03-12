@@ -1,8 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
+// import { useQuery } from '@tanstack/react-query';
+// import { secureDataQueryOptions } from "../../queryOptions/fetchSecureData";
 
 let img = "https://d.ibtimes.co.uk/en/full/1730659/elon-musk-tesla-optimus.jpg?w=736&f=c81768e7ce1d04a8ab2b362aa77abf24";
 
-function Account() {
+export default function Account() {
   /*
     useAuth0 hook provides authentication state and methods
     - isloading for loadind state
@@ -12,7 +14,7 @@ function Account() {
     - logout method to log out
   */
   const { loginWithPopup, isAuthenticated, user, logout, isLoading } = useAuth0();
-
+  
   if (isLoading) {
       return (
           <div className="flex items-center gap-3 mb-6 w-full animate-pulse">
@@ -32,7 +34,7 @@ function Account() {
                 style={{ backgroundImage: `url(${user?.picture || img})` }}
             ></div>
 
-            <span className="text-white font-medium">
+            <span className="text-white font-medium truncate max-w-[150px] inline-block">
                 {isAuthenticated ? user?.name : "Guest"}
             </span>
 
@@ -44,18 +46,19 @@ function Account() {
                         </div>
                     </button>
                 ) : (
+                    <>
                     <button 
                         onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                         className="block"
-                    >
+                        >
                         <div className="inline-flex items-center rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white hover:bg-red-500 transition-colors">
                             Logout
                         </div>
                     </button>
+                    
+                    </>
                 )}
             </div>
         </div>
     );
 }
-
-export default Account;

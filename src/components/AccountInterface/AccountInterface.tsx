@@ -12,8 +12,9 @@ export default function Account() {
     - user object with user details
     - loginWithPopup method to log in
     - logout method to log out
+    - error object to verify email
   */
-  const { loginWithPopup, isAuthenticated, user, logout, isLoading } = useAuth0();
+  const { loginWithPopup, isAuthenticated, user, logout, isLoading , error} = useAuth0();
   
   if (isLoading) {
       return (
@@ -23,6 +24,24 @@ export default function Account() {
               <div className="h-4 w-24 rounded-full bg-gray-600 text-sm"></div>
               
               <div className="ml-auto w-16 h-4 rounded-full bg-gray-600"></div>
+          </div>
+      );
+  }
+
+  if (error) {
+      return (
+          <div className="flex flex-row mb-2 w-full p-2 bg-red-900/20 border border-red-500/50 rounded-lg">
+              <span className="text-red-400 text-xs font-medium">
+                  {error.message === 'Please verify your email before logging in.' 
+                      ? 'Please verify your email.' 
+                      : error.message}
+              </span>
+              <button 
+                  onClick={() => loginWithPopup()} 
+                  className="inline-flex justify-center items-center rounded-md bg-yellow-600/20 px-3 py-1 text-xs font-semibold text-yellow-400 hover:bg-yellow-600/40 transition-colors w-fit"
+              >
+                  Try Again
+              </button>
           </div>
       );
   }

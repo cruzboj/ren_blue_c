@@ -1,8 +1,8 @@
 //component imports
 import Nav from "./components/NavgationBar/NavgationBar.tsx";
-// import { SearchHistory } from "./components/History/SearchHistory.tsx";
+import { SearchHistory } from "./components/History/SearchHistory.tsx";
 import Account from "./components/AccountInterface/AccountInterface.tsx";
-//import NewSubject from "./components/NewSubject/NewSubject.tsx";
+import NewSubject from "./components/History/NewSubject.tsx"
 // import Chat from "./components/Chat/Chat.tsx";
 import Chat from "./components/Chat/Chat.tsx";
 import Dnd from "./components/Dnd/Dnd.tsx";
@@ -24,9 +24,12 @@ function App() {
       <>
         <Nav>
           <Account />
-          {/* <NewSubject /> */}
-          {/* <SearchHistory /> */}
-          <div>hello world</div>
+          {islogged ? 
+            <>
+              <NewSubject /> 
+              <SearchHistory />
+            </>
+            : null}
         </Nav>
 
         <main className="relative flex-1 p-6 ml-64 h-screen">

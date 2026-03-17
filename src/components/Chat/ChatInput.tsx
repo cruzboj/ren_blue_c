@@ -5,9 +5,11 @@ import { useContext } from "react";
 import { ChatContext } from "../context/ChatContext";
 
 import { streamLLMResponse } from "./chatService";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ChatInput() {
   const { input , setInput , sendUser , updateBotResponse} = useContext(ChatContext);
+  const { getAccessTokenSilently } = useAuth0();
 
   const handleSend = async () => {
     if (input.trim() !== "") {
@@ -20,7 +22,9 @@ export default function ChatInput() {
       try {
         await streamLLMResponse(userText, (accumulatedText) => {
           updateBotResponse(botMsgId, accumulatedText);
-        });
+        },
+        getAccessTokenSilently
+      );
       } catch (error) {
         console.error("Failed to stream:", error);
         updateBotResponse(botMsgId, "i'm sorry there was a problem generating text");

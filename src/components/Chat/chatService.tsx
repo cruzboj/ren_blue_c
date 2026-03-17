@@ -2,11 +2,14 @@ import { getUrl } from "../../urlGetter";
 
 const url = getUrl();
 
-export const streamLLMResponse = async (message: string, onChunk: (text: string) => void) => {
-
+export const streamLLMResponse = async (message: string, onChunk: (text: string) => void, getAccessTokenSilently: any) => {
+    const token = await getAccessTokenSilently();
     const response = await fetch(`${url}/message/`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+            "Content-Type": "application/json" ,
+            'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({ message }),
     });
 

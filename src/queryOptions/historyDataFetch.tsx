@@ -7,7 +7,7 @@ import { type HistoryItemInterface } from "../components/History/types";
 
 
 export default function historyDatafetch(getAccessTokenSilently: () => Promise<string>) {
-    return queryOptions<HistoryItemInterface[]>({
+  return queryOptions<HistoryItemInterface[]>({
     queryKey: ["historyData"],
     queryFn: async () => {
       const token = await getAccessTokenSilently();
@@ -20,7 +20,7 @@ export default function historyDatafetch(getAccessTokenSilently: () => Promise<s
       });
       return res.json();
     },
-    
+
     select: (data) => data.filter((item) => item.children.length > 0),
   });
 }

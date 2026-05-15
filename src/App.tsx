@@ -2,7 +2,7 @@
 import Nav from "./components/NavgationBar/NavgationBar.tsx";
 import { SearchHistory } from "./components/History/SearchHistory.tsx";
 import Account from "./components/AccountInterface/AccountInterface.tsx";
-import NewSubject from "./components/History/NewSubject.tsx"
+// import NewSubject from "./components/History/NewSubject.tsx"
 // import Chat from "./components/Chat/Chat.tsx";
 import Chat from "./components/Chat/Chat.tsx";
 import Dnd from "./components/Dnd/Dnd.tsx";
@@ -21,31 +21,31 @@ function App() {
   const { isAuthenticated: islogged } = useAuth0();
 
   return (
-      <>
-        <Nav>
-          <Account />
-          {islogged ? 
-            <>
-              <NewSubject /> 
-              <SearchHistory />
-            </>
-            : null}
-        </Nav>
+    <>
+      <Nav>
+        <Account />
+        {islogged ?
+          <>
+            {/* <NewSubject />  */}
+            <SearchHistory />
+          </>
+          : null}
+      </Nav>
 
-        <main className="relative flex-1 p-6 ml-64 h-screen">
-          {islogged ? <Chat /> : null}
-          {islogged ? <SettingsButton /> : null}
-          <Dnd>
-            <div className="bg-zinc-200 w-100 h-170 text-black">yolo</div>
-            {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} >
+      <main className="relative flex-1 p-6 ml-64 h-screen">
+        {islogged ? <Chat /> : null}
+        {islogged ? <SettingsButton /> : null}
+        <Dnd>
+          <div className="bg-zinc-200 w-100 h-170 text-black">yolo</div>
+          {/* <RoadmapCardsContext.Provider value={{roadMapCardSession,setRoadMapCardSession}} >
             
             </RoadmapCardsContext.Provider>
               {roadMapCardSession && roadMapCardSession.map((content: any, index: number) => (
                 <RoadmapCard key={index} content={content} />
               ))} */}
-          </Dnd>
-        </main>
-      </>
+        </Dnd>
+      </main>
+    </>
   );
 }
 

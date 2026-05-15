@@ -26,9 +26,10 @@ export function HistoryItem({ item, isOpen, toggle }: HistoryItemProps) {
 
       {item.children.length > 0 && (
         <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-100 mt-1" : "max-h-0"
-          }`}
+          className={`
+            overflow-hidden transition-all duration-300
+            ${isOpen ? "max-h-100 mt-1" : "max-h-0"}
+          `}
         >
           <ul className="list-disc pl-5 ">
             {item.children.map((child) => (
